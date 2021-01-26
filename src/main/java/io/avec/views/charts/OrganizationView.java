@@ -4,6 +4,7 @@ import com.vaadin.flow.component.charts.Chart;
 import com.vaadin.flow.component.charts.model.*;
 import com.vaadin.flow.component.charts.model.style.SolidColor;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -109,6 +110,13 @@ public class OrganizationView extends VerticalLayout {
         series.add(ewanHerbert, natashaKelly);
         series.add(mdsOffice, managingDirector);
         conf.addSeries(series);
+
+        // Will result in ClassCastException.
+        // Issue raised https://github.com/vaadin/vaadin-charts/issues/563
+//        chart.addPointClickListener(e-> {
+//            final AbstractSeriesItem item = e.getItem();
+//            Notification.show(item.getName());
+//        });
 
         add(chart);
     }
